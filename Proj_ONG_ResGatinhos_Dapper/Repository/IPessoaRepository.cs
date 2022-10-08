@@ -9,13 +9,13 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
 {
     internal interface IPessoaRepository
     {
-        bool Add(Pessoa pessoa);   
-        List<Pessoa> GetAll();
-        Pessoa Get(string cpf);
-        bool UpdateNome(string cpf, string nome);
-        bool UpdateTelefone(string cpf, string telefone);
-        bool UpdateDataNascimento(string cpf, DateTime dataNascimento);
-        bool UpdateSexo(string cpf, string sexo);
+        bool Add(Pessoa pessoa);//ok
+        List<Pessoa> GetAll();//ok
+        Pessoa Get(string cpf);//ok
+        bool UpdateNome(string cpf, string nome);//ok
+        bool UpdateTelefone(string cpf, string telefone);//ok
+        bool UpdateDataNascimento(string cpf, DateTime dataNascimento);//ok
+        bool UpdateSexo(string cpf, string sexo);//ok
         bool UpdateEndereco(string cpf, string cidade, string estado, string bairro, string rua, int numero, string complemento);
     }
 }

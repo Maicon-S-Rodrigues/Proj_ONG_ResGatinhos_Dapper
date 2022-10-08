@@ -18,7 +18,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
 
 		public readonly static string UpdateSexo = "UPDATE Pessoa SET Sexo = @Sexo WHERE CPF = @Cpf";
 
-		public readonly static string UpdateDataNascimento = "UPDATE Pessoa SET Data_Nascimento = @Data_Nascismento WHERE CPF = @Cpf";
+		public readonly static string UpdateData_Nascimento = "UPDATE Pessoa SET Data_Nascimento = @Data_Nascimento WHERE CPF = @Cpf";
 
 		public readonly static string UpdateEndereco = "UPDATE Pessoa SET Cidade = @Cidade, Estado = @Estado, Bairro = @Bairro, Rua = @Rua, " +
 													   "Numero = @Numero, Complemento = @Complemento WHERE CPF = @Cpf";

@@ -67,12 +67,62 @@ namespace Proj_ONG_ResGatinhos_Dapper
             //Console.WriteLine(thais.ToString());
             #endregion
 
-            #region UPDATE ONE pelo CPF 
-            string cpfAlterar = "47931004817";  //// se o cpf informado for existente, retorna uma linha afetada e confirma a alteração.
-                                               //// se o cpf estiver errado, retorna nenhuma linha afetada e retorna que a alteração não aconteceu.
-            string novoNome = "Maic";
+            #region UPDATE ONE pelo CPF
 
-            bool deuCerto = new PessoaServices().UpdateNome(cpfAlterar, novoNome);
+            #region update Nome
+            //string cpfAlterar = "47931004817";  //// se o cpf informado for existente, retorna uma linha afetada e confirma a alteração.
+            //                                   //// se o cpf estiver errado, retorna nenhuma linha afetada e retorna que a alteração não aconteceu.
+            //string novoNome = "Maic";
+
+            //bool deuCerto = new PessoaServices().UpdateNome(cpfAlterar, novoNome);
+            //if (deuCerto == true)
+            //{
+            //    Console.WriteLine("Deu certo");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Não alterou");
+            //}
+            #endregion
+
+            #region update Sexo
+            //string cpfAlterar = "47931004817";
+
+            //string novoSexo = "F";
+
+            //bool deuCerto = new PessoaServices().UpdateSexo(cpfAlterar, novoSexo);
+            //if (deuCerto == true)
+            //{
+            //    Console.WriteLine("Deu certo");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Não alterou");
+            //}
+            #endregion
+
+            #region update Telefone
+            //string cpfAlterar = "47931004817";
+
+            //string novoTelefone = "169976144127";
+
+            //bool deuCerto = new PessoaServices().UpdateTelefone(cpfAlterar, novoTelefone);
+            //if (deuCerto == true)
+            //{
+            //    Console.WriteLine("Deu certo");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Não alterou");
+            //}
+            #endregion
+
+            #region update DataNascimento
+            string cpfAlterar = "47931004817";
+
+            DateTime novaDataNasc = DateTime.Parse("25/05/1995");
+
+            bool deuCerto = new PessoaServices().UpdateDataNascimento(cpfAlterar, novaDataNasc);
             if (deuCerto == true)
             {
                 Console.WriteLine("Deu certo");
@@ -81,6 +131,12 @@ namespace Proj_ONG_ResGatinhos_Dapper
             {
                 Console.WriteLine("Não alterou");
             }
+            #endregion
+
+            #region update Endereco
+
+            #endregion
+
             #endregion
         }
     }

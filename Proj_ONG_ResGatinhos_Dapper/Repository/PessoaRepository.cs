@@ -56,9 +56,20 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             }
         }
 
-        public bool UpdateDataNascimento(string cpf, DateTime dataNascimento)
+        public bool UpdateDataNascimento(string cpf, DateTime dataNascimento) // ok
         {
-            throw new NotImplementedException();
+            bool updated = false;
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                var result = db.Execute(Pessoa.UpdateData_Nascimento, new { Data_Nascimento = dataNascimento, Cpf = cpf });
+                if (result != 0)
+                {
+                    updated = true;
+                    return updated;
+                }
+            }
+            return updated;
         }
 
         public bool UpdateEndereco(string cpf, string cidade, string estado, string bairro, string rua, int numero, string complemento)
@@ -98,9 +109,20 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             return updated;
         }
 
-        public bool UpdateTelefone(string cpf, string telefone)
+        public bool UpdateTelefone(string cpf, string telefone) // ok
         {
-            throw new NotImplementedException();
+            bool updated = false;
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                var result = db.Execute(Pessoa.UpdateTelefone, new { Telefone = telefone, Cpf = cpf });
+                if (result != 0)
+                {
+                    updated = true;
+                    return updated;
+                }
+            }
+            return updated;
         }
     }
 }
