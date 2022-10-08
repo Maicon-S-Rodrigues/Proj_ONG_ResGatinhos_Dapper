@@ -20,7 +20,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
         }
 
 
-        public bool Add(Pessoa pessoa)
+        public bool Add(Pessoa pessoa) // ok
         {
             bool result = false;
 
@@ -38,9 +38,15 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             throw new NotImplementedException();
         }
 
-        public List<Pessoa> GetAll()
+        public List<Pessoa> GetAll() // ok
         {
-            throw new NotImplementedException();
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                var pessoa = db.Query<Pessoa>(Pessoa.SelectAll);
+
+                return (List<Pessoa>)pessoa;
+            }
         }
 
         public bool UpdateDataNascimento(string cpf, DateTime dataNascimento)
