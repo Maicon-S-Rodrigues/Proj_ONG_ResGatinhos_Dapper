@@ -13,7 +13,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
         List<Animal> GetAllAdotados();
         List<Animal> GetAllDisponiveis();
         public bool Exists(string chip);
-        Pessoa Get(string chip);
+        Animal Get(string chip);
         bool UpdateFamilia(string chip, string familia);
         bool UpdateRaca(string chip, string raca);
         bool UpdateSexo(string chip, string sexo);

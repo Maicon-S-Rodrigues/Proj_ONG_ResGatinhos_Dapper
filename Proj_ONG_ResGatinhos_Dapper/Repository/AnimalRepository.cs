@@ -1,7 +1,9 @@
-﻿using Proj_ONG_ResGatinhos_Dapper.Config;
+﻿using Dapper;
+using Proj_ONG_ResGatinhos_Dapper.Config;
 using Proj_ONG_ResGatinhos_Dapper.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,49 +19,132 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             _conn = DataBaseConfiguration.Get();
         }
 
-        public bool Add(Animal animal)
+        public bool Add(Animal animal)//ok
         {
-            throw new NotImplementedException();
+            bool result = false;
+
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                db.Execute(Animal.Insert, animal);
+                result = true;
+            }
+            return result;
         }
 
-        public bool Exists(string chip)
+        public bool Exists(string chip)//ok
         {
-            throw new NotImplementedException();
+            bool existe = false;
+
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                var result = db.ExecuteScalar(Animal.Exists, new { Chip = chip });
+                if (result != null)
+                {
+                    existe = true;
+                    return existe;
+                }
+            }
+            return existe;
         }
 
-        public Pessoa Get(string chip)
+        public Animal Get(string chip)//ok
         {
-            throw new NotImplementedException();
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+
+                var animal = db.QueryFirst<Animal>(Animal.SelectOne, new { Chip = chip });
+
+                return (Animal)animal;
+            }
         }
 
-        public List<Animal> GetAllAdotados()
+        public List<Animal> GetAllAdotados()//ok
         {
-            throw new NotImplementedException();
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                var animal = db.Query<Animal>(Animal.SelectAdotados);
+
+                return (List<Animal>)animal;
+            }
         }
 
-        public List<Animal> GetAllDisponiveis()
+        public List<Animal> GetAllDisponiveis()//ok
         {
-            throw new NotImplementedException();
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                var animal = db.Query<Animal>(Animal.SelectDisponiveis);
+
+                return (List<Animal>)animal;
+            }
         }
 
-        public bool UpdateFamilia(string chip, string familia)
+        public bool UpdateFamilia(string chip, string familia)//ok
         {
-            throw new NotImplementedException();
+            bool updated = false;
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                var result = db.Execute(Animal.UpdateFamilia, new { Familia = familia, Chip = chip });
+                if (result != 0)
+                {
+                    updated = true;
+                    return updated;
+                }
+            }
+            return updated;
         }
 
-        public bool UpdateNome(string chip, string nome)
+        public bool UpdateNome(string chip, string nome)//ok
         {
-            throw new NotImplementedException();
+            bool updated = false;
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                var result = db.Execute(Animal.UpdateNome, new { Nome = nome, Chip = chip });
+                if (result != 0)
+                {
+                    updated = true;
+                    return updated;
+                }
+            }
+            return updated;
         }
 
-        public bool UpdateRaca(string chip, string raca)
+        public bool UpdateRaca(string chip, string raca)//ok
         {
-            throw new NotImplementedException();
+            bool updated = false;
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                var result = db.Execute(Animal.UpdateRaca, new { Raca = raca, Chip = chip });
+                if (result != 0)
+                {
+                    updated = true;
+                    return updated;
+                }
+            }
+            return updated;
         }
 
-        public bool UpdateSexo(string chip, string sexo)
+        public bool UpdateSexo(string chip, string sexo)//ok
         {
-            throw new NotImplementedException();
+            bool updated = false;
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                var result = db.Execute(Animal.UpdateSexo, new { Sexo = sexo, Chip = chip });
+                if (result != 0)
+                {
+                    updated = true;
+                    return updated;
+                }
+            }
+            return updated;
         }
     }
 }
