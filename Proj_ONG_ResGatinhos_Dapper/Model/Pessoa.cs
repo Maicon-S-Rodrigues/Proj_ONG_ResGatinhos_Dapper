@@ -42,13 +42,14 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
 
         public override string ToString()
         {
-			return " | CPF: " + this.Cpf + " | Nome: " + this.Nome + " | Sexo: " + this.Sexo + " | Data de Nascimento: " + this.Data_Nascimento +
+			return " | CPF: " + this.Cpf + " | Nome: " + this.Nome + " | Sexo: " + this.Sexo + 
+				 "\n | Data de Nascimento: " + this.Data_Nascimento.ToShortDateString() +
 				   " | Telefone: " + this.Telefone + 
-				   "\n | Endereço: |" +
-                   "\n | " + this.Cidade + ", " + this.Estado + " |" +
-				   "\n | " + this.Rua + ", " + this.Numero + " |" +
-				   "\n | Complemento: " + this.Complemento + 
-				   "\n\n_________________________________________________________________________________________________________________________";
+			     "\n | Endereço: |" +
+                 "\n | " + this.Cidade + ", " + this.Estado + " |" +
+				 "\n | " + this.Rua + ", " + this.Numero + " |" +
+				 "\n | Complemento: " + this.Complemento + 
+				 "\n___________________________________________________________________________________________________\n";
         }
 
     }
