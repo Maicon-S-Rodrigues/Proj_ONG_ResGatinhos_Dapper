@@ -9,9 +9,26 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
     public class Animal
     {
         #region Constant - SQL Commands
+        public readonly static string Insert = "INSERT INTO Animal (Familia, Raca, Nome, Sexo) " +
+                                               "VALUES(@Familia, @Raca, @Nome, @Sexo)";
 
+        public readonly static string Exists = "SELECT CHIP FROM Animal WHERE CHIP = @Chip";
+
+        public readonly static string UpdateFamilia = "UPDATE Animal SET Familia = @Familia WHERE CHIP = @Chip";
+
+        public readonly static string UpdateRaca = "UPDATE Animal SET Raca = @Raca WHERE CHIP = @Chip";
+
+        public readonly static string UpdateSexo = "UPDATE Animal SET Sexo = @Sexo WHERE CHIP = @Chip";
+
+        public readonly static string UpdateNome = "UPDATE Animal SET Nome = @Nome WHERE CHIP = @Chip";
+
+        public readonly static string SelectDisponiveis = "SELECT CHIP, Familia, Raca, Nome, Sexo, Situacao FROM Animal WHERE Situacao = 'DISPONIVEL'";
+
+        public readonly static string SelectAdotados = "SELECT CHIP, Familia, Raca, Nome, Sexo, Situacao FROM Animal WHERE Situacao = 'ADOTADO'";
+
+        public readonly static string SelectOne = "SELECT CHIP, Familia, Raca, Nome, Sexo, Situacao FROM Animal WHERE CHIP = @Chip";
         #endregion
-
+        
         public int Chip { get; set; }
         public string Familia { get; set; }
         public string Raca { get; set; }

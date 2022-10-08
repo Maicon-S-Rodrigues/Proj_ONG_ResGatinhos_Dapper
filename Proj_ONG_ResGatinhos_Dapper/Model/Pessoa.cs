@@ -27,7 +27,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
 
 		public readonly static string SelectAll = "SELECT CPF, Nome, Sexo, Data_Nascimento, Telefone, Cidade, Estado, Bairro, Rua, Numero, Complemento FROM Pessoa";
 
-		public readonly static string SelectOne = "SELECT CPF, Nome, Sexo, Data_Nascimento, Telefone, Cidade, Estado, Bairro, Rua, Numero, Complemento FROM Pessoa where CPF = @Cpf";
+		public readonly static string SelectOne = "SELECT CPF, Nome, Sexo, Data_Nascimento, Telefone, Cidade, Estado, Bairro, Rua, Numero, Complemento FROM Pessoa WHERE CPF = @Cpf";
 		#endregion
 		  
 		public string Cpf { get; set; }
