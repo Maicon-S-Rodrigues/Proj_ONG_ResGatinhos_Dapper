@@ -42,10 +42,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
 		public int Numero { get; set; }
 		public string Complemento { get; set; }
 
-		public Pessoa()
-        {
-
-        }
+		public Pessoa(){}
 		public Pessoa(string cpf, string nome, string sexo, DateTime data_Nascimento, string telefone, string estado, string cidade, string bairro, string rua, int numero, string complemento)
         {
             Cpf = cpf;
