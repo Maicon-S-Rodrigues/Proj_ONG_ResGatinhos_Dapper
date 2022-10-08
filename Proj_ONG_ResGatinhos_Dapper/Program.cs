@@ -308,8 +308,64 @@ namespace Proj_ONG_ResGatinhos_Dapper
         #endregion
         static void TelaPets()
         {
+            do
+            {
+                int opc;
+                Console.Clear();
+                Console.WriteLine("PETS\n");
+                Console.WriteLine(" O que deseja fazer?");
+                Console.WriteLine(" 1 - Cadastrar um novo PET");
+                Console.WriteLine(" 2 - Editar os dados de um já cadastrado");
+                Console.WriteLine(" 3 - Ver a Lista de Pets Disponíveis para Adoção");
+                Console.WriteLine(" 4 - Ver a Lista de Pets já Adotados");
+                Console.WriteLine(" 0 - Voltar");
+                try
+                {
+                    opc = int.Parse(Console.ReadLine());
+                    switch (opc)
+                    {
+                        case 0:
+                            TelaInicial();
+                            break;
+
+                        case 1:
+                            CadastrarPet();
+                            break;
+
+                        case 2:
+                            Console.Clear();
+                            Console.WriteLine("\nEDITAR PETS\n");
+                            Console.Write("\nInforme o número do 'CHIP' do Pet que deseja editar: ");
+                            string chip = Console.ReadLine();
+                            EditarPet(chip);
+                            break;
+
+                        case 3:
+                            //MostrarPetsDisponiveis(); //mostrar todos filhtrando pelo campo situacao como "DISPONIVEL"
+                            break;
+
+                        case 4:
+                            //MostrarPetsAdotados(); //mostrar todos filhtrando pelo campo situacao como "ADOTADO"
+                            break;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Escolha um valor numérico que represente a opção desejada!\n");
+                    Pausa();
+                }
+            } while (true);
+        }
+        #region Functions_Pets
+        static void CadastrarPet()
+        {
 
         }
+        static void EditarPet(string chipEditar)
+        {
+
+        }
+        #endregion
         static void TelaAdocao()
         {
 
@@ -357,155 +413,6 @@ namespace Proj_ONG_ResGatinhos_Dapper
 
         static void Main(string[] args)
         {
-            #region teste insert e selec all
-            //////////////////---TESTE---///////////////////////////////////////
-            //Console.WriteLine("Start");
-
-            //Pessoa adotante = new Pessoa() // add um
-            //{
-            //    Cpf = "47931004817",
-
-            //    Nome = "MAICON RODRIGUES",
-
-            //    Sexo = "M",
-
-            //    Data_Nascimento = DateTime.Parse("11/05/1999"),
-
-            //    Telefone = "16 988144127",
-
-            //    Estado = "SP",
-
-            //    Cidade = "Araraquara",
-            //    Bairro = "Jd.Silvestre",
-            //    Rua = "Jose Segantini",
-            //    Numero = 161,
-            //    Complemento = ""
-            //};
-            //new PessoaServices().Add(adotante);
-
-            //adotante = new Pessoa() // add dois
-            //{
-            //    Cpf = "21673370861",
-
-            //    Nome = "THAIS VILASBOAS",
-
-            //    Sexo = "F",
-
-            //    Data_Nascimento = DateTime.Parse("25/11/1999"),
-
-            //    Telefone = "16 988623563",
-
-            //    Estado = "SP",
-
-            //    Cidade = "Araraquara",
-            //    Bairro = "Jd.Cruzeiro do Sul",
-            //    Rua = "Jesuino Lopes",
-            //    Numero = 1001,
-            //    Complemento = ""
-            //};
-            //new PessoaServices().Add(adotante);
-
-            //new PessoaServices().GetAll().ForEach(x => Console.WriteLine(x));
-            /////////////////////////////////////////////////////////////////////
-            #endregion
-
-            #region Teste SELECT ONE pelo CPF
-            //string cpf = "21670873361";
-            //Pessoa thais = new PessoaServices().Get(cpf);
-            //Console.WriteLine(thais.ToString());
-            #endregion
-
-            #region UPDATE ONE pelo CPF
-
-            #region update Nome
-            //string cpfAlterar = "47931004817";  //// se o cpf informado for existente, retorna uma linha afetada e confirma a alteração.
-            //                                   //// se o cpf estiver errado, retorna nenhuma linha afetada e retorna que a alteração não aconteceu.
-            //string novoNome = "Maic";
-
-            //bool deuCerto = new PessoaServices().UpdateNome(cpfAlterar, novoNome);
-            //if (deuCerto == true)
-            //{
-            //    Console.WriteLine("Deu certo");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Não alterou");
-            //}
-            #endregion
-
-            #region update Sexo
-            //string cpfAlterar = "47931004817";
-
-            //string novoSexo = "F";
-
-            //bool deuCerto = new PessoaServices().UpdateSexo(cpfAlterar, novoSexo);
-            //if (deuCerto == true)
-            //{
-            //    Console.WriteLine("Deu certo");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Não alterou");
-            //}
-            #endregion
-
-            #region update Telefone
-            //string cpfAlterar = "47931004817";
-
-            //string novoTelefone = "169976144127";
-
-            //bool deuCerto = new PessoaServices().UpdateTelefone(cpfAlterar, novoTelefone);
-            //if (deuCerto == true)
-            //{
-            //    Console.WriteLine("Deu certo");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Não alterou");
-            //}
-            #endregion
-
-            #region update DataNascimento
-            //string cpfAlterar = "47931004817";
-
-            //DateTime novaDataNasc = DateTime.Parse("25/05/1995");
-
-            //bool deuCerto = new PessoaServices().UpdateDataNascimento(cpfAlterar, novaDataNasc);
-            //if (deuCerto == true)
-            //{
-            //    Console.WriteLine("Deu certo");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Não alterou");
-            //}
-            #endregion
-
-            #region update Endereco
-            //string cpfAlterar = "47931004817";
-            //string cidade, estado, bairro, rua, complemento;
-            //int numero;
-
-            //cidade = "Ribeirao Preto";
-            //estado = "RJ";
-            //bairro = "Santa Terezinha";
-            //rua = "via são bento";
-            //numero = 3002;
-            //complemento = "";
-
-            //bool deuCerto = new PessoaServices().UpdateEndereco(cpfAlterar, cidade, estado, bairro, rua, numero, complemento);
-            //if (deuCerto == true)
-            //{
-            //    Console.WriteLine("Deu certo");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Não alterou");
-            //}
-            #endregion
-
-            #endregion
-
             TelaInicial();
         }
     }
