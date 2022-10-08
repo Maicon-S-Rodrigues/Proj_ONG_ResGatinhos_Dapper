@@ -9,6 +9,23 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
     public class Pessoa
     {
 		#region Constant - SQL Commands
+		public readonly static string Insert = "INSERT INTO Pessoa (CPF, Nome, Sexo, Data_Nascimento, Telefone, Estado, Cidade, Bairro, Rua, Numero, Complemento)" +
+											   "VALUES(@Cpf, @Nome, @Sexo, @Data_Nascimento, @Telefone, @Estado, @Cidade, @Bairro, @Rua, @Numero, @Complemento)";
+
+		public readonly static string UpdateNome = "UPDATE Pessoa SET Nome = @Nome WHERE CPF = @Cpf;";
+
+		public readonly static string UpdateTelefone = "UPDATE Pessoa SET Telefone = @Telefone WHERE CPF = @Cpf";
+
+		public readonly static string UpdateSexo = "UPDATE Pessoa SET Sexo = @Sexo WHERE CPF = @Cpf";
+
+		public readonly static string UpdateDataNascimento = "UPDATE Pessoa SET Data_Nascimento = @Data_Nascismento WHERE CPF = @Cpf";
+
+		public readonly static string UpdateEndereco = "UPDATE Pessoa SET Cidade = @Cidade, Estado = @Estado, Bairro = @Bairro, Rua = @Rua, " +
+													   "Numero = @Numero, Complemento = @Complemento WHERE CPF = @Cpf";
+
+		public readonly static string SelectAll = "SELECT CPF, Nome, Sexo, Data_Nascimento, Telefone, Cidade, Estado, Bairro, Rua, Numero, Complemento FROM Pessoa";
+
+		public readonly static string SelectOne = "SELECT CPF, Nome, Sexo, Data_Nascimento, Telefone, Cidade, Estado, Bairro, Rua, Numero, Complemento FROM Pessoa where CPF = @Cpf"; //testar
 		#endregion
 
 		public string Cpf { get; set; }
