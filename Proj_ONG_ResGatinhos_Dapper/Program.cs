@@ -14,7 +14,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
             {
                 int opc;
                 Console.Clear();
-                Console.WriteLine(" Bem Vindo à ResGatinhos!");
+                Console.WriteLine("\n Bem Vindo à ResGatinhos!");
                 Console.WriteLine(" Escolha a Opção desejada para continuar:\n");
                 Console.Write(" 1 - ADOTANTES\n");
                 Console.Write(" 2 - PETS\n");
@@ -61,7 +61,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
             {
                 int opc;
                 Console.Clear();
-                Console.WriteLine("ADOTANTES\n");
+                Console.WriteLine("\n RESGATINHOS - ADOTANTES\n");
                 Console.WriteLine(" O que deseja fazer?");
                 Console.WriteLine(" 1 - Ver todos Cadastrados");
                 Console.WriteLine(" 2 - Cadastrar um Novo");
@@ -97,7 +97,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
                             string cpfEditar = Console.ReadLine();
                             if (new PessoaServices().Exists(cpfEditar) == false)
                             {
-                                Console.WriteLine("\n[-- Este CPF não esta Cadastrado! --]\n");
+                                Console.WriteLine("\n[-- Este CPF não esta Cadastrado ou não é valido! --]\n");
                                 Pausa();
                                 return;
                             }
@@ -129,7 +129,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
                 int numero;
 
                 Console.Clear();
-                Console.WriteLine("CADASTRO DE ADOTANTE\n\n");
+                Console.WriteLine("\nCADASTRO DE ADOTANTE\n\n");
                 Console.Write("\nInforme o CPF para começar: ");
                 cpf = Console.ReadLine();
 
@@ -312,7 +312,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
             {
                 int opc;
                 Console.Clear();
-                Console.WriteLine("PETS\n");
+                Console.WriteLine("\n RESGATINHOS - PETS\n");
                 Console.WriteLine(" O que deseja fazer?");
                 Console.WriteLine(" 1 - Cadastrar um novo PET");
                 Console.WriteLine(" 2 - Editar os dados de um já cadastrado");
@@ -336,16 +336,30 @@ namespace Proj_ONG_ResGatinhos_Dapper
                             Console.Clear();
                             Console.WriteLine("\nEDITAR PETS\n");
                             Console.Write("\nInforme o número do 'CHIP' do Pet que deseja editar: ");
-                            string chip = Console.ReadLine();
-                            EditarPet(chip);
+                            string chipEditar = Console.ReadLine();
+                            if (new AnimalServices().Exists(chipEditar) == false)
+                            {
+                                Console.WriteLine("\n[-- Este CHIP não esta Cadastrado ou não é valido! --]\n");
+                                Pausa();
+                                return;
+                            }
+                            EditarPet(chipEditar);
                             break;
 
                         case 3:
-                            //MostrarPetsDisponiveis(); //mostrar todos filhtrando pelo campo situacao como "DISPONIVEL"
+                            Console.Clear();
+                            if (new AnimalServices().GetAllDisponiveis().Count == 0) Console.WriteLine("\n\nNão há nenhum Pet Disponível para Adoção!\n");
+                            //mostrar todos filhtrando pelo campo situacao como "DISPONIVEL"
+                            else new AnimalServices().GetAllDisponiveis().ForEach(x => Console.WriteLine(x));
+                            Pausa();
                             break;
 
                         case 4:
-                            //MostrarPetsAdotados(); //mostrar todos filhtrando pelo campo situacao como "ADOTADO"
+                            Console.Clear();
+                            if (new AnimalServices().GetAllAdotados().Count == 0) Console.WriteLine("\n\nNão há nenhum registro sobre Pets Adotados!\n");
+                            //mostrar todos filhtrando pelo campo situacao como "ADOTADO"
+                            else new AnimalServices().GetAllAdotados().ForEach(x => Console.WriteLine(x));
+                            Pausa();
                             break;
                     }
                 }
@@ -364,7 +378,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
                 string familia, raca, nome, sexo;
 
                 Console.Clear();
-                Console.WriteLine("CADASTRO DE PET\n\n");
+                Console.WriteLine("\nCADASTRO DE PET\n\n");
 
                 Console.Write("\nA qual Família Animal ele/a pertence?\n(Gato, Cachorro, Passaro, etc...): ");
                 familia = Console.ReadLine();

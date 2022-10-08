@@ -47,7 +47,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
 
         public override string ToString()
         {
-            return " | CHIP: " + this.Chip + " | Familia: " + this.Familia + " | Raça: " + this.Raca +
+            return " | CHIP: " + this.Chip + " | Familia: " + this.Familia + " | Raça: " + this.Raca + " |" +
                  "\n | Nome: " + this.Nome + " | Sexo: " + this.Sexo + " | Situação: " + this.Situacao + " |" +
                  "\n___________________________________________________________________________________________________\n";
         }
