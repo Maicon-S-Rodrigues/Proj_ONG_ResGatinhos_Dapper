@@ -33,12 +33,19 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             return result;
         }
 
-        public Pessoa Get(string cpf)
+        public Pessoa Get(string cpf) // ok 
         {
-            throw new NotImplementedException();
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+
+                var pessoa = db.QueryFirst<Pessoa>(Pessoa.SelectOne, new { Cpf = cpf });
+
+                return (Pessoa)pessoa;
+            }
         }
 
-        public List<Pessoa> GetAll() // ok
+        public List<Pessoa> GetAll() // ok 
         {
             using (var db = new SqlConnection(_conn))
             {
@@ -59,14 +66,36 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             throw new NotImplementedException();
         }
 
-        public bool UpdateNome(string cpf, string nome)
+        public bool UpdateNome(string cpf, string nome) // ok 
         {
-            throw new NotImplementedException();
+            bool updated = false;
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+               var result = db.Execute(Pessoa.UpdateNome, new {Nome = nome, Cpf = cpf});
+                if (result != 0)
+                {
+                    updated = true;
+                    return updated;
+                }
+            }
+            return updated;
         }
 
-        public bool UpdateSexo(string cpf, string sexo)
+        public bool UpdateSexo(string cpf, string sexo) // ok 
         {
-            throw new NotImplementedException();
+            bool updated = false;
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                var result = db.Execute(Pessoa.UpdateSexo, new { Sexo = sexo, Cpf = cpf });
+                if (result != 0)
+                {
+                    updated = true;
+                    return updated;
+                }
+            }
+            return updated;
         }
 
         public bool UpdateTelefone(string cpf, string telefone)

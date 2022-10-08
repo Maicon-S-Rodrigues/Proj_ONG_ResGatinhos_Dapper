@@ -12,7 +12,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
 		public readonly static string Insert = "INSERT INTO Pessoa (CPF, Nome, Sexo, Data_Nascimento, Telefone, Estado, Cidade, Bairro, Rua, Numero, Complemento)" +
 											   "VALUES(@Cpf, @Nome, @Sexo, @Data_Nascimento, @Telefone, @Estado, @Cidade, @Bairro, @Rua, @Numero, @Complemento)";
 
-		public readonly static string UpdateNome = "UPDATE Pessoa SET Nome = @Nome WHERE CPF = @Cpf;";
+		public readonly static string UpdateNome = "UPDATE Pessoa SET Nome = @Nome WHERE CPF = @Cpf"; // <----------------------------------
 
 		public readonly static string UpdateTelefone = "UPDATE Pessoa SET Telefone = @Telefone WHERE CPF = @Cpf";
 
@@ -27,7 +27,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
 
 		public readonly static string SelectOne = "SELECT CPF, Nome, Sexo, Data_Nascimento, Telefone, Cidade, Estado, Bairro, Rua, Numero, Complemento FROM Pessoa where CPF = @Cpf"; //testar
 		#endregion
-
+		  
 		public string Cpf { get; set; }
 		public string Nome { get; set; }
 		public string Sexo { get; set; }
@@ -40,6 +40,10 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
 		public int Numero { get; set; }
 		public string Complemento { get; set; }
 
+		public Pessoa()
+        {
+
+        }
         public override string ToString()
         {
 			return " | CPF: " + this.Cpf + " | Nome: " + this.Nome + " | Sexo: " + this.Sexo + 
