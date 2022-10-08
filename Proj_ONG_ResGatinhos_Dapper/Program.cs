@@ -359,7 +359,46 @@ namespace Proj_ONG_ResGatinhos_Dapper
         #region Functions_Pets
         static void CadastrarPet()
         {
+            try
+            {
+                string familia, raca, nome, sexo;
 
+                Console.Clear();
+                Console.WriteLine("CADASTRO DE PET\n\n");
+
+                Console.Write("\nA qual Família Animal ele/a pertence?\n(Gato, Cachorro, Passaro, etc...): ");
+                familia = Console.ReadLine();
+
+                Console.Write("\nQual a Raça?");
+                raca = Console.ReadLine();
+
+                Console.Write("\nNome: ");
+                nome = Console.ReadLine();
+
+                bool flag = false;
+                do
+                {
+                    Console.Write("\nDigite [- F -] para Feminino, [- M -] para Masculino ou [- N -] caso Não saiba informar no momento");
+                    Console.Write("\nSexo: ");
+                    sexo = Console.ReadLine().ToUpper();
+                    if (sexo.ToUpper() == "F" || sexo.ToUpper() == "M" || sexo.ToUpper() == "N")
+                    {
+                        flag = true;
+                    }
+                } while (flag == false);
+
+                Animal pet = new(familia, raca, nome, sexo);
+
+                new AnimalServices().Add(pet);
+
+                Console.Clear();
+                Console.WriteLine("\nCadastro Realizado com Sucesso!");
+                Pausa();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Desculpa... Houve um Erro Inesperado durante o Cadastro.\nTente Novamente.\n\n<<<" + e + ">>>");
+            }
         }
         static void EditarPet(string chipEditar)
         {

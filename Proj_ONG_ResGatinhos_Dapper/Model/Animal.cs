@@ -37,13 +37,12 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
         public string Situacao { get; set; }
 
         public Animal(){}
-        public Animal(string familia, string raca, string nome, string sexo, string situacao)
+        public Animal(string familia, string raca, string nome, string sexo)
         {
             this.Familia = familia;
             this.Raca = raca;
             this.Nome = nome;
             this.Sexo = sexo;
-            this.Situacao = situacao;
         }
 
         public override string ToString()
