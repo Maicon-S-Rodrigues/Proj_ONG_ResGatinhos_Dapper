@@ -19,7 +19,6 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             _conn = DataBaseConfiguration.Get();
         }
 
-
         public bool Add(Pessoa pessoa) // ok
         {
             bool result = false;
@@ -32,6 +31,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             }
             return result;
         }
+
         public bool Exists(string cpf) //verifica se o cpf ja existe cadastrado
         {
             bool existe = false;
@@ -48,7 +48,6 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             }
             return existe;
         }
-
 
         public Pessoa Get(string cpf) // ok 
         {
