@@ -62,5 +62,9 @@ namespace Proj_ONG_ResGatinhos_Dapper.Services
         }
         //_________________________________________________________________________________________//
         //_________________________________________________________________________________________//
+        public bool UpdateEndereco(string cpf, string cidade, string estado, string bairro, string rua, int numero, string complemento)
+        {
+            return _PessoaRepository.UpdateEndereco(cpf, cidade, estado, bairro, rua, numero, complemento);
+        }
     }
 }

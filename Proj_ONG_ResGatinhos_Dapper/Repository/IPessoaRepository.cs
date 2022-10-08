@@ -16,6 +16,6 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
         bool UpdateTelefone(string cpf, string telefone);//ok
         bool UpdateDataNascimento(string cpf, DateTime dataNascimento);//ok
         bool UpdateSexo(string cpf, string sexo);//ok
-        bool UpdateEndereco(string cpf, string cidade, string estado, string bairro, string rua, int numero, string complemento);
+        bool UpdateEndereco(string cpf, string cidade, string estado, string bairro, string rua, int numero, string complemento);//ok
     }
 }

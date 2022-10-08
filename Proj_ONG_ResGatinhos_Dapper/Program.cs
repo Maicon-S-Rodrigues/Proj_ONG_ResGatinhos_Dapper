@@ -118,26 +118,46 @@ namespace Proj_ONG_ResGatinhos_Dapper
             #endregion
 
             #region update DataNascimento
-            string cpfAlterar = "47931004817";
+            //string cpfAlterar = "47931004817";
 
-            DateTime novaDataNasc = DateTime.Parse("25/05/1995");
+            //DateTime novaDataNasc = DateTime.Parse("25/05/1995");
 
-            bool deuCerto = new PessoaServices().UpdateDataNascimento(cpfAlterar, novaDataNasc);
-            if (deuCerto == true)
-            {
-                Console.WriteLine("Deu certo");
-            }
-            else
-            {
-                Console.WriteLine("Não alterou");
-            }
+            //bool deuCerto = new PessoaServices().UpdateDataNascimento(cpfAlterar, novaDataNasc);
+            //if (deuCerto == true)
+            //{
+            //    Console.WriteLine("Deu certo");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Não alterou");
+            //}
             #endregion
 
             #region update Endereco
+            //string cpfAlterar = "47931004817";
+            //string cidade, estado, bairro, rua, complemento;
+            //int numero;
 
+            //cidade = "Ribeirao Preto";
+            //estado = "RJ";
+            //bairro = "Santa Terezinha";
+            //rua = "via são bento";
+            //numero = 3002;
+            //complemento = "";
+
+            //bool deuCerto = new PessoaServices().UpdateEndereco(cpfAlterar, cidade, estado, bairro, rua, numero, complemento);
+            //if (deuCerto == true)
+            //{
+            //    Console.WriteLine("Deu certo");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Não alterou");
+            //}
             #endregion
 
             #endregion
+
         }
     }
 }

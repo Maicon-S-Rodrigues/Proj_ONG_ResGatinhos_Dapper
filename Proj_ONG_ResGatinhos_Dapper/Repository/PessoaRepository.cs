@@ -72,9 +72,22 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             return updated;
         }
 
-        public bool UpdateEndereco(string cpf, string cidade, string estado, string bairro, string rua, int numero, string complemento)
+        public bool UpdateEndereco(string cpf, string cidade, string estado, string bairro, string rua, int numero, string complemento) // ok
         {
-            throw new NotImplementedException();
+            bool updated = false;
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                var result = db.Execute(Pessoa.UpdateEndereco, new { Cpf = cpf, Cidade = cidade, Estado = estado,
+                                                                            Bairro = bairro, Rua = rua, Numero = numero,
+                                                                            Complemento = complemento });
+                if (result != 0)
+                {
+                    updated = true;
+                    return updated;
+                }
+            }
+            return updated;
         }
 
         public bool UpdateNome(string cpf, string nome) // ok 
