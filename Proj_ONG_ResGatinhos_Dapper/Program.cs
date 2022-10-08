@@ -55,7 +55,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
                 }
             } while (true);
         }
-        static void TelaAdotantes()
+        static void TelaAdotantes() // colocar o "ver historico de animais adotados? <<---?
         {
             do
             {
@@ -95,7 +95,13 @@ namespace Proj_ONG_ResGatinhos_Dapper
                             Console.WriteLine("\nEDITAR ADOTANTES\n");
                             Console.Write("\nInforme o 'CPF' do Adotante que deseja editar: ");
                             string cpfEditar = Console.ReadLine();
-                            //EditarAdotante(cpfEditar);
+                            if (new PessoaServices().Exists(cpfEditar) == false)
+                            {
+                                Console.WriteLine("\n[-- Este CPF não esta Cadastrado! --]\n");
+                                Pausa();
+                                return;
+                            }
+                            EditarAdotante(cpfEditar);
                             break;
 
                         case 4:
@@ -146,7 +152,6 @@ namespace Proj_ONG_ResGatinhos_Dapper
                     if (sexo.ToUpper() == "F" || sexo.ToUpper() == "M" || sexo.ToUpper() == "N")
                     {
                         flag = true;
-                        //break;
                     }
                 } while (flag == false);
 
@@ -187,6 +192,118 @@ namespace Proj_ONG_ResGatinhos_Dapper
             {
                 Console.WriteLine("Desculpa... Houve um Erro Inesperado durante o Cadastro.\nTente Novamente.\n\n<<<" + e + ">>>");
             }
+        }
+        static void EditarAdotante(string cpfEditar)
+        {
+            do
+            {
+                int opc;
+                Console.Clear();
+                Console.WriteLine("EDITAR ADOTANTE: ");
+                Pessoa adotante = new PessoaServices().Get(cpfEditar);
+                Console.WriteLine(adotante.ToString());
+                Console.WriteLine(" O que deseja fazer?");
+                Console.WriteLine(" 1 - Editar Nome");
+                Console.WriteLine(" 2 - Editar Telefone");
+                Console.WriteLine(" 3 - Editar Sexo");
+                Console.WriteLine(" 4 - Editar Endereço");
+                Console.WriteLine(" 5 - Editar Data de Nascimento");
+                Console.WriteLine(" 0 - Voltar");
+                try
+                {
+                    opc = int.Parse(Console.ReadLine());
+                    switch (opc)
+                    {
+                        case 0:
+                            TelaAdotantes();
+                            break;
+
+                        case 1:
+                            Console.WriteLine("\nAlterar Nome:");
+                            Console.Write("Informe o Novo Nome a Ser Gravado: ");
+                            string novoNome = Console.ReadLine();
+
+                            if (new PessoaServices().UpdateNome(cpfEditar, novoNome) == true) Console.WriteLine("\nNome Alterado!");
+                            else Console.WriteLine("\nDesculpe, Não foi possível realizar essa alteração.");
+                            Pausa();
+                            break;
+
+                        case 2:
+                            Console.WriteLine("\nAlterar Telefone:");
+                            Console.Write("Informe o Novo Telefone a Ser Gravado: ");
+                            string novoTelefone = Console.ReadLine();
+
+                            if (new PessoaServices().UpdateTelefone(cpfEditar, novoTelefone) == true) Console.WriteLine("\nTelefone Alterado!");
+                            else Console.WriteLine("\nDesculpe, Não foi possível realizar essa alteração.");
+                            Pausa();
+                            break;
+
+                        case 3: //sexo
+                            Console.WriteLine("\nAlterar Sexo:");
+                            Console.Write("Informe o Novo Sexo a Ser Gravado: ");
+                            bool flag = false;
+                            string novoSexo;
+                            do
+                            {
+                                Console.Write("\nDigite [- F -] para Feminino, [- M -] para Masculino ou [- N -] caso Não queira informar");
+                                Console.Write("\nSexo: ");
+                                novoSexo = Console.ReadLine().ToUpper();
+                                if (novoSexo.ToUpper() == "F" || novoSexo.ToUpper() == "M" || novoSexo.ToUpper() == "N")
+                                {
+                                    flag = true;
+                                    break;
+                                }
+                            } while (flag == false);
+
+                            if (new PessoaServices().UpdateSexo(cpfEditar, novoSexo) == true) Console.WriteLine("\nSexo Alterado!");
+                            else Console.WriteLine("\nDesculpe, Não foi possível realizar essa alteração.");
+                            Pausa();
+                            break;
+
+                        case 4:
+                            Console.Clear();
+                            Console.WriteLine("\nAlterar Endereço:");
+                            Console.Write("\n[-- Cidade, Estado, Bairro, Rua, Número, Complemento --]");
+                            Console.Write("\nCidade: ");
+                            string cidade = Console.ReadLine();
+
+                            Console.Write("\nEstado (U-F): ");
+                            string estado = Console.ReadLine();
+
+                            Console.Write("\nBairro: ");
+                            string bairro = Console.ReadLine();
+
+                            Console.Write("\nRua: ");
+                            string rua = Console.ReadLine();
+
+                            Console.Write("\nNúmero: ");
+                            int numero = LerNumero();
+
+                            Console.Write("\nComplemento: ");
+                            string complemento = Console.ReadLine();
+
+                            if (new PessoaServices().UpdateEndereco(cpfEditar, cidade, estado, bairro, rua, numero, complemento) == true) Console.WriteLine("\nEndereço Alterado!");
+                            else Console.WriteLine("\nDesculpe, Não foi possível realizar essa alteração.");
+                            Pausa();
+                            break;
+
+                        case 5:
+                            Console.WriteLine("\nAlterar Data de Nascimento:");
+                            Console.Write("Informe a Nova Data de Nascimento a Ser Gravada: ");
+                            DateTime novaDataNascimento = LerData();
+
+                            if (new PessoaServices().UpdateDataNascimento(cpfEditar, novaDataNascimento) == true) Console.WriteLine("\nData de Nascimento Alterada!");
+                            else Console.WriteLine("\nDesculpe, Não foi possível realizar essa alteração.");
+                            Pausa();
+                            break;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Escolha um valor numérico que represente a opção desejada!\n");
+                    Pausa();
+                }
+            } while (true);
         }
         #endregion
         static void TelaPets()
