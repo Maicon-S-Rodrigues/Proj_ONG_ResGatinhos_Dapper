@@ -12,7 +12,9 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
 		public readonly static string Insert = "INSERT INTO Pessoa (CPF, Nome, Sexo, Data_Nascimento, Telefone, Estado, Cidade, Bairro, Rua, Numero, Complemento)" +
 											   "VALUES(@Cpf, @Nome, @Sexo, @Data_Nascimento, @Telefone, @Estado, @Cidade, @Bairro, @Rua, @Numero, @Complemento)";
 
-		public readonly static string UpdateNome = "UPDATE Pessoa SET Nome = @Nome WHERE CPF = @Cpf"; // <----------------------------------
+		public readonly static string Exists = "SELECT CPF FROM Pessoa WHERE CPF = @Cpf";
+
+		public readonly static string UpdateNome = "UPDATE Pessoa SET Nome = @Nome WHERE CPF = @Cpf"; 
 
 		public readonly static string UpdateTelefone = "UPDATE Pessoa SET Telefone = @Telefone WHERE CPF = @Cpf";
 
@@ -25,7 +27,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
 
 		public readonly static string SelectAll = "SELECT CPF, Nome, Sexo, Data_Nascimento, Telefone, Cidade, Estado, Bairro, Rua, Numero, Complemento FROM Pessoa";
 
-		public readonly static string SelectOne = "SELECT CPF, Nome, Sexo, Data_Nascimento, Telefone, Cidade, Estado, Bairro, Rua, Numero, Complemento FROM Pessoa where CPF = @Cpf"; //testar
+		public readonly static string SelectOne = "SELECT CPF, Nome, Sexo, Data_Nascimento, Telefone, Cidade, Estado, Bairro, Rua, Numero, Complemento FROM Pessoa where CPF = @Cpf";
 		#endregion
 		  
 		public string Cpf { get; set; }
@@ -44,6 +46,21 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
         {
 
         }
+		public Pessoa(string cpf, string nome, string sexo, DateTime data_Nascimento, string telefone, string estado, string cidade, string bairro, string rua, int numero, string complemento)
+        {
+            Cpf = cpf;
+            Nome = nome;
+            Sexo = sexo;
+            Data_Nascimento = data_Nascimento;
+            Telefone = telefone;
+            Estado = estado;
+            Cidade = cidade;
+            Bairro = bairro;
+            Rua = rua;
+            Numero = numero;
+            Complemento = complemento;
+        }
+
         public override string ToString()
         {
 			return " | CPF: " + this.Cpf + " | Nome: " + this.Nome + " | Sexo: " + this.Sexo + 

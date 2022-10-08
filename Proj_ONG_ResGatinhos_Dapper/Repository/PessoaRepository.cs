@@ -32,6 +32,23 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             }
             return result;
         }
+        public bool Exists(string cpf) //verifica se o cpf ja existe cadastrado
+        {
+            bool existe = false;
+
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                var result = db.ExecuteScalar(Pessoa.Exists, new { Cpf = cpf });
+                if (result != null)
+                {
+                    existe = true;
+                    return existe;
+                }
+            }
+            return existe;
+        }
+
 
         public Pessoa Get(string cpf) // ok 
         {
@@ -78,9 +95,16 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             using (var db = new SqlConnection(_conn))
             {
                 db.Open();
-                var result = db.Execute(Pessoa.UpdateEndereco, new { Cpf = cpf, Cidade = cidade, Estado = estado,
-                                                                            Bairro = bairro, Rua = rua, Numero = numero,
-                                                                            Complemento = complemento });
+                var result = db.Execute(Pessoa.UpdateEndereco, new
+                {
+                    Cpf = cpf,
+                    Cidade = cidade,
+                    Estado = estado,
+                    Bairro = bairro,
+                    Rua = rua,
+                    Numero = numero,
+                    Complemento = complemento
+                });
                 if (result != 0)
                 {
                     updated = true;
@@ -96,7 +120,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             using (var db = new SqlConnection(_conn))
             {
                 db.Open();
-               var result = db.Execute(Pessoa.UpdateNome, new {Nome = nome, Cpf = cpf});
+                var result = db.Execute(Pessoa.UpdateNome, new { Nome = nome, Cpf = cpf });
                 if (result != 0)
                 {
                     updated = true;
