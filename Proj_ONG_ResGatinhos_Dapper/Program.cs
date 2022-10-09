@@ -568,6 +568,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
                     Pausa();
                     return;
                 }
+                //verificar se o chip esta com status "disponivel"
                 ///insertinto adota
 
 

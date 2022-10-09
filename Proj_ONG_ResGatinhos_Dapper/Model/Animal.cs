@@ -32,6 +32,8 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
 
         public readonly static string DesfazerAdocao = "UPDATE Animal SET Situacao = 'DISPONIVEL' WHERE CHIP = @Chip";
 
+        public readonly static string ExistsDisponivel = "SELECT Situacao FROM Animal WHERE CHIP = @Chip AND Situacao = 'DISPONIVEL'";
+
         #endregion
 
         public int Chip { get; set; }
