@@ -9,8 +9,35 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
     public class Adota
     {
         #region Constant - SQL Commands
+        //mostrar todos adotantes com seus respectivos pets
+        public readonly static string SelectAll = "SELECT Pessoa.CPF, Pessoa.Nome, Animal.CHIP, Animal.Familia, Animal.Nome, Animal.Raca, Animal.Situacao " +
+                                                  "FROM Adota " +
 
+                                                  "RIGHT JOIN Pessoa " +
+
+                                                  "ON(Pessoa.CPF = Adota.CPF) " +
+
+                                                  "RIGHT JOIN Animal " +
+
+                                                  "ON(Animal.CHIP = Adota.CHIP) " +
+
+                                                  "WHERE Animal.Situacao = 'ADOTADO'";
+
+        //mostrar todos os PETS adotados por um CPF especifico
+        public readonly static string SelectAllAdotadosCpf = "SELECT Pessoa.CPF, Pessoa.Nome, Animal.CHIP, Animal.Familia, Animal.Nome, Animal.Raca, Animal.Situacao " +
+                                                             "FROM Adota " +
+
+                                                             "RIGHT JOIN Pessoa " +
+
+                                                             "ON(Pessoa.CPF = Adota.CPF) " +
+
+                                                             "RIGHT JOIN Animal " +
+
+                                                             "ON(Animal.CHIP = Adota.CHIP) " +
+
+                                                             "WHERE Pessoa.CPF = @CPF";
         #endregion
+
         public string PessoaCpf { get; set; }
         public string AnimalChip { get; set; }
         public string PessoaNome { get; set; }
