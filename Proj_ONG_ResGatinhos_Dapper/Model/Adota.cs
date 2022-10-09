@@ -35,7 +35,15 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
 
                                                              "ON(Animal.CHIP = Adota.CHIP) " +
 
-                                                             "WHERE Pessoa.CPF = @CPF";
+                                                             "WHERE Pessoa.CPF = @Cpf";
+
+
+        public readonly static string Insert = "INSERT INTO Adota VALUES(@Cpf, @Chip)";
+
+        public readonly static string DeleteAdocao = "DELETE FROM Adota WHERE CHIP = @Chip";
+
+
+
         #endregion
 
         public string PessoaCpf { get; set; }
