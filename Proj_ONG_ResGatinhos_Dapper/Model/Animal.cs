@@ -28,11 +28,11 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
 
         public readonly static string SelectOne = "SELECT CHIP, Familia, Raca, Nome, Sexo, Situacao FROM Animal WHERE CHIP = @Chip";
 
-        public readonly static string RealizarAdocao = "UPDATE Animal SET Situacao = 'ADOTADO' WHERE CHIP = @Chip";
+        public readonly static string RealizarAdocao = "UPDATE Animal SET Situacao = 'ADOTADO' WHERE CHIP = @Chip"; 
 
-        public readonly static string DesfazerAdocao = "UPDATE Animal SET Situacao = 'DISPONIVEL' WHERE CHIP = @Chip";
+        public readonly static string DesfazerAdocao = "UPDATE Animal SET Situacao = 'DISPONIVEL' WHERE CHIP = @Chip"; 
 
-        public readonly static string ExistsDisponivel = "SELECT Situacao FROM Animal WHERE CHIP = @Chip AND Situacao = 'DISPONIVEL'";
+        public readonly static string ExistsDisponivel = "SELECT Situacao FROM Animal WHERE CHIP = @Chip AND Situacao = 'DISPONIVEL'"; 
 
         #endregion
 

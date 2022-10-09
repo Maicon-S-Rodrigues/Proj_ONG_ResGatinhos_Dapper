@@ -21,7 +21,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
 
                                                   "ON(Animal.CHIP = Adota.CHIP) " +
 
-                                                  "WHERE Animal.Situacao = 'ADOTADO'";
+                                                  "WHERE Animal.Situacao = 'ADOTADO'"; //
 
         //mostrar todos os PETS adotados por um CPF especifico
         public readonly static string SelectAllAdotadosCpf = "SELECT Pessoa.CPF, Pessoa.Nome, Animal.CHIP, Animal.Familia, Animal.Nome, Animal.Raca, Animal.Situacao " +
@@ -35,12 +35,12 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
 
                                                              "ON(Animal.CHIP = Adota.CHIP) " +
 
-                                                             "WHERE Pessoa.CPF = @Cpf";
+                                                             "WHERE Pessoa.CPF = @Cpf"; //
 
 
-        public readonly static string Insert = "INSERT INTO Adota VALUES(@Cpf, @Chip)";
+        public readonly static string Insert = "INSERT INTO Adota VALUES(@Cpf, @Chip)"; //
 
-        public readonly static string DeleteAdocao = "DELETE FROM Adota WHERE CHIP = @Chip";
+        public readonly static string DeleteAdocao = "DELETE FROM Adota WHERE CHIP = @Chip"; //
 
         #endregion
 

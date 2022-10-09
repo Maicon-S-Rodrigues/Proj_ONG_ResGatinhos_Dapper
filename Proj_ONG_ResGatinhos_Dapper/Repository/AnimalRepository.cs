@@ -31,7 +31,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             }
             return result;
         }
-
+       
         public bool Exists(string chip)//ok
         {
             bool existe = false;
@@ -48,7 +48,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             }
             return existe;
         }
-
+       
         public Animal Get(string chip)//ok
         {
             using (var db = new SqlConnection(_conn))
@@ -82,7 +82,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
                 return (List<Animal>)animal;
             }
         }
-
+        
         public bool UpdateFamilia(string chip, string familia)//ok
         {
             bool updated = false;
@@ -138,6 +138,55 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             {
                 db.Open();
                 var result = db.Execute(Animal.UpdateSexo, new { Sexo = sexo, Chip = chip });
+                if (result != 0)
+                {
+                    updated = true;
+                    return updated;
+                }
+            }
+            return updated;
+        }
+
+        public bool RealizarAdocao(string chip) // ok
+        {
+            bool updated = false;
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                var result = db.Execute(Animal.RealizarAdocao, new { Chip = chip });
+                if (result != 0)
+                {
+                    updated = true;
+                    return updated;
+                }
+            }
+            return updated;
+        }
+
+        public bool ExistsDisponivel(string chip) // ok
+        {
+            bool existe = false;
+
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                var result = db.ExecuteScalar(Animal.ExistsDisponivel, new { Chip = chip });
+                if (result != null)
+                {
+                    existe = true;
+                    return existe;
+                }
+            }
+            return existe;
+        }
+
+        public bool DesfazerAdocao(string chip) // ok
+        {
+            bool updated = false;
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                var result = db.Execute(Animal.DesfazerAdocao, new { Chip = chip });
                 if (result != 0)
                 {
                     updated = true;
