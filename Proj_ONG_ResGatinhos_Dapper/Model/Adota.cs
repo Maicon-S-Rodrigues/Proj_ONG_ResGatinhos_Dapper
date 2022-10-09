@@ -20,23 +20,19 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
                                                   "WHERE Animal.Situacao = 'ADOTADO'"; 
 
         //mostrar todos os PETS adotados por um CPF especifico
-        public readonly static string SelectAllAdotadosCpf = "SELECT Pessoa.CPF, Pessoa.Nome, Animal.CHIP, Animal.Familia, Animal.Nome, Animal.Raca, Animal.Situacao " +
-                                                             "FROM Adota " +
+        public readonly static string SelectAllAdotadosCpf = "SELECT Pessoa.CPF AS PessoaCpf, Pessoa.Nome AS PessoaNome, Animal.Chip AS AnimalChip, " +
+                                                  "Animal.Familia AS AnimalFamilia, Animal.Nome AS AnimalNome, Animal.Raca AS AnimalRaca, Animal.Situacao AS AnimalSituacao " +
+                                                  "FROM Adota " +
+                                                  "RIGHT JOIN Pessoa " +
+                                                  "ON (Pessoa.CPF = Adota.CPF) " +
+                                                  "RIGHT JOIN Animal " +
+                                                  "ON (Animal.CHIP = Adota.CHIP) " +
+                                                  "WHERE Pessoa.CPF = @Cpf"; 
+        
 
-                                                             "RIGHT JOIN Pessoa " +
+        public readonly static string Insert = "INSERT INTO Adota VALUES(@Cpf, @Chip)"; 
 
-                                                             "ON(Pessoa.CPF = Adota.CPF) " +
-
-                                                             "RIGHT JOIN Animal " +
-
-                                                             "ON(Animal.CHIP = Adota.CHIP) " +
-
-                                                             "WHERE Pessoa.CPF = @Cpf"; //
-
-
-        public readonly static string Insert = "INSERT INTO Adota VALUES(@Cpf, @Chip)"; //
-
-        public readonly static string DeleteAdocao = "DELETE FROM Adota WHERE CHIP = @Chip"; //
+        public readonly static string DeleteAdocao = "DELETE FROM Adota WHERE CHIP = @Chip"; 
 
         #endregion
 

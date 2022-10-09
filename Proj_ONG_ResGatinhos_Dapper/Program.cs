@@ -55,7 +55,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
                 }
             } while (true);
         }
-        static void TelaAdotantes() // colocar o "ver historico de animais adotados? <<---?
+        static void TelaAdotantes()
         {
             do
             {
@@ -66,7 +66,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
                 Console.WriteLine(" 1 - Ver todos Cadastrados");
                 Console.WriteLine(" 2 - Cadastrar um Novo");
                 Console.WriteLine(" 3 - Editar um Cadastro já Existente");
-                Console.WriteLine(" 4 - Ver Histórico de Adoção de um já Cadastrado"); // <<<<<<<< ????
+                Console.WriteLine(" 4 - Ver Histórico de Adoção de um já Cadastrado");
                 Console.WriteLine(" 0 - Voltar");
                 try
                 {
@@ -92,7 +92,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
 
                         case 3:
                             Console.Clear();
-                            Console.WriteLine("\nEDITAR ADOTANTES\n");
+                            Console.WriteLine("\nRESGATINHOS - EDITAR ADOTANTES\n");
                             Console.Write("\nInforme o 'CPF' do Adotante que deseja editar: ");
                             string cpfEditar = Console.ReadLine();
                             if (new PessoaServices().Exists(cpfEditar) == false)
@@ -106,10 +106,21 @@ namespace Proj_ONG_ResGatinhos_Dapper
 
                         case 4:
                             Console.Clear();
-                            Console.WriteLine("ADOTANTES\n");
-                            Console.Write("\nInforme o 'CPF' do Adotante para ver quais Animais ele adotou: ");
-                            string cpfPesquisa = Console.ReadLine();
-                            //MostrarAnimaisAdotadosPeloCPF(cpfPesquisa);
+                            Console.WriteLine("\nRESGATINHOS - ADOTANTES\n");
+                            Console.Write("\nInforme o CPF do Adotante para ver quais Animais ele tem adotado: ");
+                            string cpfPesquisar = Console.ReadLine();
+                            if (new PessoaServices().Exists(cpfPesquisar) == false)
+                            {
+                                Console.WriteLine("\n[-- Este CPF não esta Cadastrado ou não é valido! --]\n");
+                                Pausa();
+                                return;
+                            }
+                            Console.Clear();
+                            if (new AdotaServices().GetAllAdotadosCpf(cpfPesquisar).Count == 0) Console.WriteLine("\n\nNão há Nenhum Pet adotado por este Adotante!\n");
+
+                            //se a lista não esta vazia, imprime todos
+                            else new AdotaServices().GetAllAdotadosCpf(cpfPesquisar).ForEach(x => Console.WriteLine(x));
+                            Pausa();
                             break;
                     }
                 }
