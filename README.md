@@ -4,7 +4,7 @@
 
 - Atividade para fixação de aprendizado. 5by5 ~ InterAção - Console Aplication com Banco de Dados SQL Server utilizando Dapper.
 
-*** (OBS: O Modelo seguido para criação do Banco de dados está entre os arquivos do projeto (Projeto ResGatinhos).
+*** (OBS: O Modelo seguido para criação do Banco de dados está na pasta 'ArquivosImportantes' entre os arquivos do projeto (Projeto ResGatinhos).
      Basta Abrir a Modelagem no Draw.IO (site ou aplicativo) para ver a Modelagem, Mapeamento e Normalização.
      Também há outro arquivo que carrega as SQLQuerrys Necessárias para criação do Banco usando SQL Server Managment Studio 18.) ***
 
