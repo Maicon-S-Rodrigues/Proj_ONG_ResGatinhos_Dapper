@@ -11,7 +11,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
     {
         public List<Adota> GetAll();
         public List<Adota> GetAllAdotadosCpf(string cpf);
-        public bool Add(Adota adota);
+        public bool Add(string cpf, string chip);
         public bool Delete(string chip);
     }
 }

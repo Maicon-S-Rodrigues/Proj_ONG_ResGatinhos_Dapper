@@ -10,18 +10,14 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
     {
         #region Constant - SQL Commands
         //mostrar todos adotantes com seus respectivos pets
-        public readonly static string SelectAll = "SELECT Pessoa.CPF, Pessoa.Nome, Animal.CHIP, Animal.Familia, Animal.Nome, Animal.Raca, Animal.Situacao " +
+        public readonly static string SelectAll = "SELECT Pessoa.CPF AS PessoaCpf, Pessoa.Nome AS PessoaNome, Animal.Chip AS AnimalChip, " +
+                                                  "Animal.Familia AS AnimalFamilia, Animal.Nome AS AnimalNome, Animal.Raca AS AnimalRaca, Animal.Situacao AS AnimalSituacao " +
                                                   "FROM Adota " +
-
                                                   "RIGHT JOIN Pessoa " +
-
-                                                  "ON(Pessoa.CPF = Adota.CPF) " +
-
+                                                  "ON (Pessoa.CPF = Adota.CPF) " +
                                                   "RIGHT JOIN Animal " +
-
-                                                  "ON(Animal.CHIP = Adota.CHIP) " +
-
-                                                  "WHERE Animal.Situacao = 'ADOTADO'"; //
+                                                  "ON (Animal.CHIP = Adota.CHIP) " +
+                                                  "WHERE Animal.Situacao = 'ADOTADO'"; 
 
         //mostrar todos os PETS adotados por um CPF especifico
         public readonly static string SelectAllAdotadosCpf = "SELECT Pessoa.CPF, Pessoa.Nome, Animal.CHIP, Animal.Familia, Animal.Nome, Animal.Raca, Animal.Situacao " +
@@ -52,13 +48,11 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
         public string AnimalRaca { get; set; }
         public string AnimalSituacao { get; set; }
 
-        public Adota(){}
-
         public override string ToString()
         {
             return " | CPF: " + this.PessoaCpf + " | Nome: " + this.PessoaNome + " |" +
                  "\n | CHIP do Pet: " + this.AnimalChip + " | Família Animal: " + this.AnimalFamilia + " |" +
-                 "\n | Raça: " + this.AnimalRaca + " | Nome do Pet: |" + this.AnimalNome + " | Situação: " + this.AnimalSituacao + " |" +
+                 "\n | Raça: " + this.AnimalRaca + " | Nome do Pet: | " + this.AnimalNome + " | Situação: " + this.AnimalSituacao + " |" +
                  "\n___________________________________________________________________________________________________\n";
         }
     }

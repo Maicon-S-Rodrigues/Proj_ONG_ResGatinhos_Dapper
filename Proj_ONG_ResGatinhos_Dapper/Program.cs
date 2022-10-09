@@ -509,7 +509,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
                 Console.WriteLine("\n RESGATINHOS - ADOÇÕES\n");
                 Console.WriteLine(" O que deseja fazer?");
                 Console.WriteLine(" 1 - Nova Adoção");
-                Console.WriteLine(" 2 - Dezfazer uma Adoção");
+                Console.WriteLine(" 2 - Desvincular uma Adoção");
                 Console.WriteLine(" 3 - Ver a Lista de Adotantes e seus respectivos Pets");
                 Console.WriteLine(" 0 - Voltar");
                 try
@@ -526,11 +526,61 @@ namespace Proj_ONG_ResGatinhos_Dapper
                             break;
 
                         case 2:
-                            //DesfazerAdocao();
+                            Console.Clear();
+                            Console.WriteLine("\n DESVINCULAR UMA ADOÇÃO\n\n");
+
+                            Console.Write(" Informe o CHIP do Pet que deseja desvincular a Adoção: ");
+                            string chip = Console.ReadLine();
+                            if (new AnimalServices().Exists(chip) == false)
+                            {
+                                Console.WriteLine("\n[-- Este CHIP não esta Cadastrado ou não é valido! --]\n");
+                                Pausa();
+                                break;
+                            }
+                            if (new AnimalServices().ExistsDisponivel(chip) == true)
+                            {
+                                Console.WriteLine("\n[-- Este Pet já está Disponível, sem nenhum vínculo de Adoção! --]\n");
+                                Pausa();
+                                break;
+                            }
+
+                            bool flag = false;
+                            string confirma;
+                            Console.WriteLine("\n Você tem Certeza que deseja Desvincular essa Adoção?");
+                            Console.WriteLine("\n Pressione [-- S --]->Sim");
+                            Console.WriteLine(" Pressione [-- N --]->Não");
+                            do
+                            {
+                                confirma = Console.ReadLine().ToUpper();
+                                switch (confirma)
+                                {
+                                    case "S":
+                                        flag = true;
+                                        break;
+
+                                    case "N":
+                                        return;
+
+                                    default:
+                                        Console.WriteLine("Opção Inválida!");
+                                        break;
+                                }
+                            } while (flag == false);
+
+                            new AdotaServices().Delete(chip); //remove o registro de adocao
+                            new AnimalServices().DesfazerAdocao(chip); //setta o animalzinho para o status "DISPONIVEL" novamente
+                            Console.WriteLine("\n Desvinculo de Adoção Realizado com Sucesso!");
+                            Pausa();
                             break;
 
                         case 3:
-                            //MostrarAdotantesESeusPets();
+                            //MostrarAdotantesESeusPets
+                            Console.Clear();
+                            if (new AdotaServices().GetAll().Count == 0) Console.WriteLine("\n\nNão há nenhum Adodante Cadastrado!\n");
+
+                            //se a lista não esta vazia, imprime todos
+                            else new AdotaServices().GetAll().ForEach(x => Console.WriteLine(x));
+                            Pausa();
                             break;
                     }
                 }
@@ -559,6 +609,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
                     return;
                 }
 
+
                 Console.Write("\nInforme o CHIP de registro do Pet a ser Adotado (ou Pressione [-- S --] para sair): ");
                 string chip = Console.ReadLine();
                 if (chip.ToUpper() == "S") return;
@@ -568,17 +619,25 @@ namespace Proj_ONG_ResGatinhos_Dapper
                     Pausa();
                     return;
                 }
-                //verificar se o chip esta com status "disponivel"
-                ///insertinto adota
 
+
+                if (new AnimalServices().ExistsDisponivel(chip) == false)
+                {
+                    Console.WriteLine("\n[-- CHIP não esta Disponível para Adoção. Este Pet Já foi Adotado! --]\n");
+                    Pausa();
+                    return;
+                }
+
+                new AdotaServices().Add(cpf, chip); //realiza o insert na adoção
+                new AnimalServices().RealizarAdocao(chip); //setta o status do pet como "ADOTADO"
 
                 Console.Clear();
-                Console.WriteLine("\nCadastro Realizado com Sucesso!");
+                Console.WriteLine("\nAdoção Realizada com Sucesso!");
                 Pausa();
             }
             catch (Exception e)
             {
-                Console.WriteLine("Desculpa... Houve um Erro Inesperado durante o Cadastro.\nTente Novamente.\n\n<<<" + e + ">>>");
+                Console.WriteLine("Desculpe... Houve um Erro Inesperado durante o Processo de Adoção.\nTente Novamente.\n\n<<<" + e + ">>>");
             }
         }
         #endregion

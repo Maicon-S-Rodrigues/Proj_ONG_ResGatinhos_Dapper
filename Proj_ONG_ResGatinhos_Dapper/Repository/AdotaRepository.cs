@@ -41,14 +41,14 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             }
         }
 
-        public bool Add(Adota adota) //ok
+        public bool Add(string cpf, string chip) //ok
         {
             bool result = false;
 
             using (var db = new SqlConnection(_conn))
             {
                 db.Open();
-                db.Execute(Adota.Insert, adota);
+                db.Execute(Adota.Insert, new {Cpf = cpf, Chip = chip});
                 result = true;
             }
             return result;
