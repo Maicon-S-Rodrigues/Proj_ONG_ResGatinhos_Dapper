@@ -27,8 +27,16 @@ namespace Proj_ONG_ResGatinhos_Dapper
                     {
                         case 0:
                             Console.Clear();
-                            Console.WriteLine("\n\n\n\t\t\tObrigado pela sua Cãopanhia!!!\n\t\t\tContinue sempre com os ResGatinhos!!!\n\n\n");
-                            Console.WriteLine("\t\t\t......Encerrando Sessão......");
+                            Console.WriteLine("\n\n\n");
+                            Console.WriteLine("\t\t ___________________________________________");
+                            Console.WriteLine("\t\t|                                           |");
+                            Console.WriteLine("\t\t|       Obrigado pela sua Cãopanhia!!!!     |");
+                            Console.WriteLine("\t\t|     Continue sempre com os ResGatinhos!   |");
+                            Console.WriteLine("\t\t|                                           |");
+                            Console.WriteLine("\t\t|             Encerrando Sessão...          |");
+                            Console.WriteLine("\t\t|                                           |");
+                            Console.WriteLine("\t\t|___________________________________________|");
+                            Console.WriteLine("\n\n");
                             Environment.Exit(0);
                             break;
 
@@ -55,6 +63,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
                 }
             } while (true);
         }
+
         static void TelaAdotantes()
         {
             do
@@ -317,6 +326,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
             } while (true);
         }
         #endregion
+
         static void TelaPets()
         {
             do
@@ -511,6 +521,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
             } while (true);
         }
         #endregion
+
         static void TelaAdocao()
         {
             do
@@ -652,6 +663,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
             }
         }
         #endregion
+
         #endregion
 
         #region Utility
