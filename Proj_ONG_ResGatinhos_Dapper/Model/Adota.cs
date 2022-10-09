@@ -42,8 +42,6 @@ namespace Proj_ONG_ResGatinhos_Dapper.Model
 
         public readonly static string DeleteAdocao = "DELETE FROM Adota WHERE CHIP = @Chip";
 
-
-
         #endregion
 
         public string PessoaCpf { get; set; }

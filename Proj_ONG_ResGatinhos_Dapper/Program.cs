@@ -544,7 +544,41 @@ namespace Proj_ONG_ResGatinhos_Dapper
         #region Functions_Adocao
         static void CadastrarAdocao()
         {
+            try
+            {
+                Console.Clear();
+                Console.WriteLine("\nPEDIDO DE ADOÇÃO\n\n");
 
+                Console.Write("Informe o CPF da pessoa que irá fazer uma adoção (ou Pressione [-- S --] para sair): ");
+                string cpf = Console.ReadLine();
+                if (cpf.ToUpper() == "S") return;
+                if (new PessoaServices().Exists(cpf) == false)
+                {
+                    Console.WriteLine("\n[-- Este CPF não esta Cadastrado ou não é valido! --]\n");
+                    Pausa();
+                    return;
+                }
+
+                Console.Write("\nInforme o CHIP de registro do Pet a ser Adotado (ou Pressione [-- S --] para sair): ");
+                string chip = Console.ReadLine();
+                if (chip.ToUpper() == "S") return;
+                if (new AnimalServices().Exists(chip) == false)
+                {
+                    Console.WriteLine("\n[-- Este CHIP não esta Cadastrado ou não é valido! --]\n");
+                    Pausa();
+                    return;
+                }
+                ///insertinto adota
+
+
+                Console.Clear();
+                Console.WriteLine("\nCadastro Realizado com Sucesso!");
+                Pausa();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Desculpa... Houve um Erro Inesperado durante o Cadastro.\nTente Novamente.\n\n<<<" + e + ">>>");
+            }
         }
         #endregion
         #endregion
