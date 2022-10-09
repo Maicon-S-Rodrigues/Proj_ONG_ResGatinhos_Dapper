@@ -19,7 +19,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             _conn = DataBaseConfiguration.Get();
         }
 
-        public bool Add(Pessoa pessoa) // ok
+        public bool Add(Pessoa pessoa) // ok 
         {
             bool result = false;
 
@@ -72,7 +72,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             }
         }
 
-        public bool UpdateDataNascimento(string cpf, DateTime dataNascimento) // ok
+        public bool UpdateDataNascimento(string cpf, DateTime dataNascimento) // ok 
         {
             bool updated = false;
             using (var db = new SqlConnection(_conn))
@@ -88,7 +88,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             return updated;
         }
 
-        public bool UpdateEndereco(string cpf, string cidade, string estado, string bairro, string rua, int numero, string complemento) // ok
+        public bool UpdateEndereco(string cpf, string cidade, string estado, string bairro, string rua, int numero, string complemento) // ok 
         {
             bool updated = false;
             using (var db = new SqlConnection(_conn))
@@ -145,7 +145,7 @@ namespace Proj_ONG_ResGatinhos_Dapper.Repository
             return updated;
         }
 
-        public bool UpdateTelefone(string cpf, string telefone) // ok
+        public bool UpdateTelefone(string cpf, string telefone) // ok 
         {
             bool updated = false;
             using (var db = new SqlConnection(_conn))

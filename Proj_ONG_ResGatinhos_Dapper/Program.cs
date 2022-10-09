@@ -16,9 +16,9 @@ namespace Proj_ONG_ResGatinhos_Dapper
                 Console.Clear();
                 Console.WriteLine("\n Bem Vindo à ResGatinhos!");
                 Console.WriteLine(" Escolha a Opção desejada para continuar:\n");
-                Console.Write(" 1 - ADOTANTES\n");
-                Console.Write(" 2 - PETS\n");
-                Console.Write(" 3 - Area de ADOÇÃO\n");
+                Console.Write(" 1 - Adotantes\n");
+                Console.Write(" 2 - Pets\n");
+                Console.Write(" 3 - Area de Adoções\n");
                 Console.Write(" 0 - Encerrar Sessão\n");
                 try
                 {
@@ -82,7 +82,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
                             if (new PessoaServices().GetAll().Count == 0) Console.WriteLine("\n\nNão há nenhum Adodante Cadastrado!\n");
 
                             //se a lista não esta vazia, imprime todos adotantes que encontrou cadastrado
-                            else new PessoaServices().GetAll().ForEach(x => Console.WriteLine(x)); 
+                            else new PessoaServices().GetAll().ForEach(x => Console.WriteLine(x));
                             Pausa();
                             break;
 
@@ -180,7 +180,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
                 Console.Write("\nComplemento: ");
                 complemento = Console.ReadLine();
 
-                Pessoa adotante = new (cpf, nome, sexo, dataNascimento, telefone, estado, cidade, bairro, rua, numero, complemento);
+                Pessoa adotante = new(cpf, nome, sexo, dataNascimento, telefone, estado, cidade, bairro, rua, numero, complemento);
 
                 new PessoaServices().Add(adotante);
 
@@ -199,7 +199,7 @@ namespace Proj_ONG_ResGatinhos_Dapper
             {
                 int opc;
                 Console.Clear();
-                Console.WriteLine("EDITAR ADOTANTE: ");
+                Console.WriteLine("\nEDITAR ADOTANTE: ");
                 Pessoa adotante = new PessoaServices().Get(cpfEditar);
                 Console.WriteLine(adotante.ToString());
                 Console.WriteLine(" O que deseja fazer?");
@@ -416,13 +416,137 @@ namespace Proj_ONG_ResGatinhos_Dapper
         }
         static void EditarPet(string chipEditar)
         {
+            do
+            {
+                int opc;
+                Console.Clear();
+                Console.WriteLine("\nEDITAR PET: ");
+                Animal animal = new AnimalServices().Get(chipEditar);
+                Console.WriteLine(animal.ToString());
+                Console.WriteLine(" O que deseja fazer?");
+                Console.WriteLine(" 1 - Editar Família Animal");
+                Console.WriteLine(" 2 - Editar Raça");
+                Console.WriteLine(" 3 - Editar Sexo");
+                Console.WriteLine(" 4 - Editar Nome");
+                Console.WriteLine(" 0 - Voltar");
+                try
+                {
+                    opc = int.Parse(Console.ReadLine());
+                    switch (opc)
+                    {
+                        case 0:
+                            TelaPets();
+                            break;
 
+                        case 1:
+                            Console.WriteLine("\nAlterar Família Animal Pertencente:");
+                            Console.Write("Informe a Família Animal a Ser Gravada: ");
+                            string novaFamilia = Console.ReadLine();
+
+                            if (new AnimalServices().UpdateFamilia(chipEditar, novaFamilia) == true) Console.WriteLine("\nFamília Animal Alterada!");
+                            else Console.WriteLine("\nDesculpe, Não foi possível realizar essa alteração.");
+                            Pausa();
+                            break;
+
+                        case 2:
+                            Console.WriteLine("\nAlterar Raça Pertencente:");
+                            Console.Write("Informe a Raça a Ser Gravada: ");
+                            string novaRaca = Console.ReadLine();
+
+                            if (new AnimalServices().UpdateRaca(chipEditar, novaRaca) == true) Console.WriteLine("\nRaça do Pet Alterada!");
+                            else Console.WriteLine("\nDesculpe, Não foi possível realizar essa alteração.");
+                            Pausa();
+                            break;
+
+                        case 3:
+                            Console.WriteLine("\nAlterar Sexo:");
+                            Console.Write("Informe o Novo Sexo a Ser Gravado: ");
+                            bool flag = false;
+                            string novoSexo;
+                            do
+                            {
+                                Console.Write("\nDigite [- F -] para Feminino, [- M -] para Masculino ou [- N -] caso Não queira informar");
+                                Console.Write("\nSexo: ");
+                                novoSexo = Console.ReadLine().ToUpper();
+                                if (novoSexo.ToUpper() == "F" || novoSexo.ToUpper() == "M" || novoSexo.ToUpper() == "N")
+                                {
+                                    flag = true;
+                                    break;
+                                }
+                            } while (flag == false);
+
+                            if (new AnimalServices().UpdateSexo(chipEditar, novoSexo) == true) Console.WriteLine("\nSexo do Pet Alterado!");
+                            else Console.WriteLine("\nDesculpe, Não foi possível realizar essa alteração.");
+                            Pausa();
+                            break;
+
+                        case 4:
+                            Console.WriteLine("\nAlterar Nome:");
+                            Console.Write("Informe o Novo Nome a Ser Gravado para o Pet: ");
+                            string novoNome = Console.ReadLine();
+
+                            if (new AnimalServices().UpdateNome(chipEditar, novoNome) == true) Console.WriteLine("\nNome do Pet Alterado!");
+                            else Console.WriteLine("\nDesculpe, Não foi possível realizar essa alteração.");
+                            Pausa();
+
+                            break;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Escolha um valor numérico que represente a opção desejada!\n");
+                    Pausa();
+                }
+            } while (true);
         }
         #endregion
         static void TelaAdocao()
         {
+            do
+            {
+                int opc;
+                Console.Clear();
+                Console.WriteLine("\n RESGATINHOS - ADOÇÕES\n");
+                Console.WriteLine(" O que deseja fazer?");
+                Console.WriteLine(" 1 - Nova Adoção");
+                Console.WriteLine(" 2 - Dezfazer uma Adoção");
+                Console.WriteLine(" 3 - Ver a Lista de Adotantes e seus respectivos Pets");
+                Console.WriteLine(" 0 - Voltar");
+                try
+                {
+                    opc = int.Parse(Console.ReadLine());
+                    switch (opc)
+                    {
+                        case 0:
+                            TelaInicial();
+                            break;
+
+                        case 1:
+                            CadastrarAdocao();
+                            break;
+
+                        case 2:
+                            //DesfazerAdocao();
+                            break;
+
+                        case 3:
+                            //MostrarAdotantesESeusPets();
+                            break;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Escolha um valor numérico que represente a opção desejada!\n");
+                    Pausa();
+                }
+            } while (true);
+        }
+        #region Functions_Adocao
+        static void CadastrarAdocao()
+        {
 
         }
+        #endregion
         #endregion
 
         #region Utility
