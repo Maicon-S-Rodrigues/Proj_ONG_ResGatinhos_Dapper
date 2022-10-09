@@ -6,12 +6,12 @@ using System.Collections.Generic;
 namespace Proj_ONG_ResGatinhos_Dapper
 {
     internal class Program
-    {
+    {  
         #region MainView
         static void TelaInicial()
         {
             do
-            {
+            {  
                 int opc;
                 Console.Clear();
                 Console.WriteLine("\n Bem Vindo à ResGatinhos!");
